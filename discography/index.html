@@ -34,6 +34,8 @@ const PAGE = {
 <!-- ===================== END OF CONTENT BLOCK ===================== -->
 
 <title>Discography — pang</title>
+<link rel="icon" type="image/png" href="../id/favicon.png">
+<link rel="apple-touch-icon" href="../id/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -48,6 +50,13 @@ tbody tr{cursor:default}
 td.t.a{font-weight:400}      /* artist regular, title medium, as in the type test */
 td.tt{font-weight:500}
 td.role{white-space:nowrap}
+/* fixed columns: a title too long for its column is cut with ".." (the full title is in the panel) */
+table{table-layout:fixed}
+th:nth-child(1),td:nth-child(1){width:27%}
+th:nth-child(2),td:nth-child(2){width:33%}
+th:nth-child(4),td:nth-child(4){width:5.5em}
+td.tt .tx{display:block;white-space:nowrap;overflow:hidden}
+@media (max-width:760px){th:nth-child(1),td:nth-child(1){width:38%}th:nth-child(2),td:nth-child(2){width:auto}td.tt .tx{white-space:normal}}
 .p-specs dd.n{font-family:var(--list-sans)}
 .p-specs dd.t{font-weight:500}
 .p-specs{margin-bottom:10px}
@@ -134,7 +143,7 @@ td.role{white-space:nowrap}
       var tr = el('tr'), ta = el('td', 't a'), tt = el('td', 'tt'), sub = el('span', 'sub', r.role || '');
       tr.tabIndex = 0; tr.id = 'r' + (i + 1);    // r1, r2 ... lets the landing search point at one release
       ta.appendChild(document.createTextNode(r.artist));
-      tt.appendChild(document.createTextNode(r.title || '—'));
+      var tx = el('span', 'tx', r.title || '—'); tx.dataset.full = r.title || '—'; tt.appendChild(tx);
       if (r.role) tt.appendChild(sub);           // the role, shown under the title on phones only (format and label are in the panel)
       tr.appendChild(ta); tr.appendChild(tt);
       tr.appendChild(el('td', 'role wide', r.role || '—'));   // hidden on phones, where it moves into the line under the title
@@ -143,6 +152,17 @@ td.role{white-space:nowrap}
       tr.addEventListener('focus', function(){ show(r, tr); });
       $('rows').appendChild(tr);
     });
+    // titles longer than their column: cut to fit and end with ".." (wide screens only)
+    function cut(){
+      [].forEach.call(document.querySelectorAll('td.tt .tx'), function(x){
+        var full = x.dataset.full; x.textContent = full; x.title = '';
+        if (getComputedStyle(x).whiteSpace !== 'nowrap' || x.scrollWidth <= x.clientWidth) return;
+        var n = full.length;
+        while (n > 1 && x.scrollWidth > x.clientWidth) { n--; x.textContent = full.slice(0, n).replace(/[\s.,]+$/, '') + '..'; }
+        x.title = full;
+      });
+    }
+    cut(); window.addEventListener('resize', cut); if (document.fonts) document.fonts.ready.then(cut);
     // arriving from the search (discography/index.html#r5): show that release and scroll to it
     var m = /^#r(\d+)$/.exec(location.hash), n = m ? +m[1] - 1 : 0;
     if (!list[n]) n = 0;

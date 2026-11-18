@@ -16,8 +16,7 @@ table.tl thead th{padding:0 8px 6px;font:500 calc(var(--tl-size) - 2px) var(--tl
 table.tl thead th.r{text-align:right}
 table.tl tbody tr:first-child td{padding-top:9px}
 table.tl tbody tr{cursor:pointer;transition:background .12s,color .12s}
-table.tl tbody tr:hover,table.tl tbody tr:focus-visible,table.tl tbody tr.on{background:var(--accent);color:var(--paper)}
-table.tl tbody tr:hover td,table.tl tbody tr:focus-visible td,table.tl tbody tr.on td{border-bottom-color:var(--accent)}
+table.tl tbody tr:hover,table.tl tbody tr:focus-visible,table.tl tbody tr.on{background:var(--hover)}
 table.tl tbody tr:focus-visible{outline:none}
 table.tl td.no{width:3em;font-family:var(--tl-mono)}
 table.tl td.tm{width:4em;font-family:var(--tl-mono);white-space:nowrap;text-align:right}

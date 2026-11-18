@@ -13,6 +13,7 @@
     // page identity: browser tab title, big title, tabs, footer
     document.title = C.browserTitle;
     $('title-main').textContent = C.title;
+    if (C.year) $('title-main').appendChild(el('span', 'yr', C.year));      // the year, next to the title
     if ($('tab-top')) $('tab-top').textContent = pad(C.number);
 
     // close (×, top right) and the Esc key: back to the Work page.
@@ -49,8 +50,8 @@
       if (t) h.textContent = t; else h.remove();
     });
 
-    // info, right end of the title line: "year 2023 · series no. GR23 – 1100001"
-    $('info').textContent = (C.info || []).filter(function(r){ return r[1]; }).map(function(r){ return (r[0] ? r[0].toLowerCase() + ' ' : '') + r[1]; }).join(' \u00b7 ');
+    // right end of the title line: the short role (PAGE.role); pages without one show the older info lines
+    $('info').textContent = C.role ? C.role : (C.info || []).filter(function(r){ return r[1]; }).map(function(r){ return (r[0] ? r[0].toLowerCase() + ' ' : '') + r[1]; }).join(' \u00b7 ');
 
     // main table: label | unit | value. An empty list [] hides it
     if (!C.mainData || !C.mainData.length) $('main-data').closest('.scroll').hidden = true;
@@ -60,17 +61,29 @@
       $('main-data').appendChild(tr);
     });
 
-    // credits / materials: small technical text at the top of the left column; empty lists hide it.
+    // credits / presentations / materials: small technical text at the top of the left column; empty lists hide it.
     // credits: [ "label", "value" ] lines (author, curator, commission, production ...);
     // materials: plain lines. A page can use either or both (credits first)
-    var mat = $('materials'), cr = C.credits || [], ml = C.materials || [];
-    if (!cr.length && !ml.length) { mat.hidden = true; }
+    // presentations: [ "date", "place" ] lines, under the credits (premiere, tour dates, exhibition dates)
+    // a value written as [ "line one", "line two" ] is set on two lines; lines never wrap on wide screens
+    var mat = $('materials'), cr = C.credits || [], pr = C.presentations || [], ml = C.materials || [];
+    function lines(list, cls){
+      var dl = el('dl', 'credits' + (cls ? ' ' + cls : ''));
+      list.forEach(function(r){
+        dl.appendChild(el('dt', null, r[0]));
+        var dd = el('dd'); dd.innerHTML = Array.isArray(r[1]) ? r[1].join('<br>') : r[1]; dl.appendChild(dd);
+      });
+      return dl;
+    }
+    if (!cr.length && !pr.length && !ml.length) { mat.hidden = true; }
     else {
       if (cr.length) {
         if (C.headings.credits) mat.appendChild(el('p', 'tech-label', C.headings.credits));
-        var dl = el('dl', 'credits');
-        cr.forEach(function(r){ dl.appendChild(el('dt', null, r[0])); var dd = el('dd'); dd.innerHTML = r[1]; dl.appendChild(dd); });
-        mat.appendChild(dl);
+        mat.appendChild(lines(cr));
+      }
+      if (pr.length) {
+        if (C.headings.presentations) mat.appendChild(el('p', 'tech-label', C.headings.presentations));
+        mat.appendChild(lines(pr, 'dates'));
       }
       if (ml.length) {
         if (C.headings.materials) mat.appendChild(el('p', 'tech-label', C.headings.materials));

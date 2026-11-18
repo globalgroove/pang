@@ -2,13 +2,13 @@
    Colours are the variables just below (paper / ink / rule); fonts are --label and --value.
 
    COLOUR SCHEME: light silver on every device (the visitor's dark mode is ignored).
-   The dark accents use --accent: side tab, hovered rows, menu hover, and the cover panel on
-   Work, Discography and About (see assets/list.css). Text stays in --ink.
+   --accent (electric blue) marks the small things: side tab, hovered rows, the menu underline and
+   the search line. Hovers are quiet: --hover, a pinch darker than the page. The image panels stay ink (assets/list.css).
    To go back to following the visitor's light / dark setting, use the earlier values:
      light  --paper:#ECEBE6; --ink:#141413; --rule:#8d8b84; --tab-text:#ECEBE6
      dark   --paper:#171716; --ink:#E6E4DD; --rule:#6b6963; --tab-text:#171716  (inside @media (prefers-color-scheme:dark)) */
 :root{
-  --paper:#D9DAD8; --ink:#121313; --rule:#8a8c89; --tab-text:#D9DAD8; --accent:#243b3f;   /* pang accent: dark petrol grey. Hovered rows, menu hover, side tabs, cover panel. Back to #121313 = same as the ink */
+  --paper:#D9DAD8; --ink:#121313; --rule:#8a8c89; --tab-text:#D9DAD8; --accent:#1f3dff; --hover:#cfd0ce;   /* pang accent: electric blue, flat. Hovered rows, menu underline, current-page dot, side tabs. Back to #121313 = same as the ink */
   color-scheme:light;
   --label:"IBM Plex Sans Condensed","Zen Kaku Gothic New","Arial Narrow",Arial,sans-serif;
   --value:"IBM Plex Mono","Zen Kaku Gothic New",ui-monospace,Menlo,Consolas,monospace;
@@ -51,9 +51,11 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset
 .site-menu{position:static;margin:0;padding:0;list-style:none;background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .site-menu li+li{border-top:1px solid var(--rule)}
 .site-menu a{display:block;padding:6px 12px 6px 8px;font:400 11px/1.3 var(--nav-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
-.site-menu a::before{content:"";display:inline-block;width:1.2em}
-.site-menu a[aria-current]::before{content:"\25CF"}
-.site-menu a:hover,.site-menu a:focus-visible{background:var(--accent);color:var(--paper);outline:none}
+.site-menu a{opacity:.6}                       /* other sections a pinch lighter ... */
+.site-menu a[aria-current]{opacity:1}           /* ... the section you are in a pinch darker (no dot, no bold) */
+/* hover: the letters go dark, nothing else */
+.site-menu a{transition:opacity .15s}
+.site-menu a:hover,.site-menu a:focus-visible{opacity:1;outline:none}
 
 /* sub-list: a line with its own chevron; the list folds open underneath, indented */
 .sub-row{display:flex;align-items:stretch}
@@ -62,7 +64,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset
 .sub-btn.only{flex:1}
 .sub-btn.only::before{content:"";display:inline-block;width:1.2em;margin-right:-.8em}
 .sub-row>a+.sub-btn{border-left:1px solid var(--rule);padding:6px 12px}
-.sub-btn:hover,.sub-btn:focus-visible{background:var(--accent);color:var(--paper);outline:none}
+.sub-btn:hover,.sub-btn:focus-visible{opacity:1;outline:none}
 .site-menu ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
 .site-menu ul[hidden]{display:none}
 .site-menu ul a{padding-left:24px;font-size:13px}
@@ -71,7 +73,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset
 .tab-top{position:absolute;top:28px;right:0;background:var(--accent);color:var(--tab-text);font:700 64px/1 var(--label);height:70px;padding:0 0 0 14px;width:124px;overflow:hidden;white-space:nowrap}
 .tab-top span{display:block;transform:translateX(18px);padding-top:3px}
 .tabs-side{position:fixed;right:0;top:46%;z-index:5;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.tab-side{background:var(--accent);color:var(--tab-text);writing-mode:vertical-rl;font:500 16px/1 var(--value);padding:16px 8px;letter-spacing:.06em}
+.tab-side{background:var(--accent);color:var(--tab-text);writing-mode:vertical-rl;font:500 13px/1 var(--nav);padding:14px 7px;letter-spacing:.14em}   /* the face of the site title */
 a.tab-side{text-decoration:none;cursor:pointer;background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px var(--accent)}
 a.tab-side:hover,a.tab-side:focus-visible{background:var(--accent);color:var(--tab-text);outline:none}
 
@@ -83,7 +85,7 @@ a.tab-side:hover,a.tab-side:focus-visible{background:var(--accent);color:var(--t
 .close{position:fixed;top:calc(30px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));width:20px;height:20px;background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule);z-index:7}
 .close::before,.close::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:1px;background:currentColor;transform:translate(-50%,-50%) rotate(45deg)}
 .close::after{transform:translate(-50%,-50%) rotate(-45deg)}
-.close:hover,.close:focus-visible{background:var(--accent);color:var(--paper);box-shadow:none;outline:none}
+.close:hover,.close:focus-visible{background:var(--hover);outline:none}
 .close::selection{background:none}
 @media (max-width:760px){.close{top:calc(14px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));z-index:10}}
 @media (pointer:coarse){.close{width:28px;height:28px}}
@@ -94,7 +96,7 @@ a.tab-side:hover,a.tab-side:focus-visible{background:var(--accent);color:var(--t
   .page{padding:20px 44px 40px 12px}
   .page.no-tabs{padding-right:12px}
   .tab-top{font-size:48px;height:56px;width:100px;top:20px}
-  .tab-side{font-size:18px;padding:12px 6px}
+  .tab-side{font-size:13px;padding:12px 6px}
   .tabs-side.idx .tab-side{font-size:11px;padding:9px 4px}
   /* phones: only the title line stays at the top while scrolling; the menu scrolls away under it */
   .site{display:contents}
@@ -107,24 +109,24 @@ a.tab-side:hover,a.tab-side:focus-visible{background:var(--accent);color:var(--t
 .nav-label{flex:none;font:400 11px/1.3 var(--nav-mono);letter-spacing:.08em;text-transform:uppercase;transition:opacity .25s;cursor:text}
 .nav-search.filled .nav-label{opacity:.4}
 .nq-wrap{position:relative;flex:1;min-width:0;display:flex;border-bottom:1px solid var(--rule)}
-.nav-search:focus-within .nq-wrap{border-bottom-color:var(--accent)}
+.nav-search:focus-within .nq-wrap{border-bottom-color:var(--ink)}
 .nq-wrap input{flex:1;min-width:0;width:100%;border:0;background:transparent;color:var(--ink);font:400 11px/1.3 var(--nav-mono);letter-spacing:.04em;padding:2px 0;outline:none;border-radius:0;-webkit-appearance:none;appearance:none;caret-color:transparent}
 .nq-wrap.native input{caret-color:var(--ink)}
 .nq-wrap input::-webkit-search-cancel-button{display:none}
 .nq-measure{position:absolute;visibility:hidden;white-space:pre;font:400 11px var(--nav-mono);letter-spacing:.04em;pointer-events:none}
-.nq-cursor{position:absolute;top:50%;left:0;width:6px;height:12px;margin-top:-6px;background:#6f706e;pointer-events:none;animation:nq-blink 1.06s steps(1,end) infinite}
+.nq-cursor{position:absolute;top:50%;left:0;width:6px;height:12px;margin-top:-6px;background:#6f706e;pointer-events:none}
+.nav-search:focus-within .nq-cursor{animation:nq-blink 1.06s steps(1,end) infinite}   /* blinks only once the field is clicked */
 .nq-cursor.typing{animation:none}
 .nq-cursor[hidden]{display:none}
 @keyframes nq-blink{0%{opacity:1}50%{opacity:0}}
 .nav-hits{position:absolute;left:0;top:100%;margin:4px 0 0;padding:0;list-style:none;width:420px;max-width:calc(100vw - 32px);background:var(--paper);border:1px solid var(--rule);z-index:10}
 .nav-hits li+li{border-top:1px solid var(--rule)}
-.site-menu .nav-hits a,.nav-hits .soon,.nav-hits .none{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:5px 8px;text-transform:none;letter-spacing:0}
-.site-menu .nav-hits a::before{display:none}
+.nav-hits a,.nav-hits .soon,.nav-hits .none{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:5px 8px;text-transform:none;letter-spacing:0;text-decoration:none;color:inherit}
 .nav-hits b{font:500 12px/1.3 var(--nav);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .nav-hits span{font:400 10px var(--nav-mono);opacity:.7;white-space:nowrap}
 .nav-hits .soon{opacity:.6}
 .nav-hits .none{font:400 11px var(--nav-mono);opacity:.6}
-.site-menu .nav-hits a.active{background:var(--accent);color:var(--paper)}
+.nav-hits a:hover,.nav-hits a.active{background:var(--hover)}
 @media (prefers-reduced-motion:reduce){.nq-cursor{animation:none}.nav-label{transition:none}}
 
 /* desktop: the menu opens to the right of the title as one line of sections;
@@ -137,8 +139,6 @@ a.tab-side:hover,a.tab-side:focus-visible{background:var(--accent);color:var(--t
   .site-menu[hidden]{display:none}
   .site-menu li+li{border-top:0}
   .site-menu a{position:relative;padding:3px 9px}
-  .site-menu a::before{width:0}
-  .site-menu a[aria-current]::before{content:"\25CF";position:absolute;left:1px;top:50%;transform:translateY(-52%);width:auto;margin:0;font-size:.65em}   /* the dot sits in the gap before the word */
   .nav-search{flex:1;min-width:120px;padding:0 0 0 16px}                 /* the search fills the rest of the row, up to the right edge */
   .nav-hits{left:auto;right:0}
   .site-btn[aria-expanded=true]::after{transform:rotate(135deg) translate(-1px,-1px)}
