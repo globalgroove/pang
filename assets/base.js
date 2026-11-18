@@ -58,7 +58,7 @@
     /* ---- search: last item of the menu. Looks through the projects, commercial work and releases in site.js ---- */
     function fold(x){ return String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
     function work(p, extra){
-      return { title:p.title, meta:[p.year, p.type].filter(Boolean).join(' · '), link:p.link, text:fold([p.title, p.year, p.type, p.role, p.client, p.keywords, extra].join(' ')) };
+      return { title:p.title, meta:[p.year, p.artist || p.client, p.role].filter(Boolean).join(' · '), link:p.link, text:fold([p.title, p.artist, p.client, p.brand, p.role, p.format, p.year, p.premiere, p.keywords, extra].join(' ')) };
     }
     var items = (S.projects || []).map(function(p){ return work(p, 'work'); })
     .concat((S.commercial || []).map(function(p){ return work(p, 'work commercial'); }))
@@ -125,7 +125,7 @@
       menu.hidden = !o; btn.setAttribute('aria-expanded', o); nav.classList.toggle('menu-open', o);
       btn.setAttribute('aria-label', o ? 'Close the menu' : 'Open the menu');
       if (byUser){ try { localStorage.setItem(KEY, o ? 'open' : 'closed'); } catch (e) {} }
-      if (o && api.searchOpened) api.searchOpened(byUser || fixed);
+      if (o && api.searchOpened) api.searchOpened(false);      // never focused on its own: the cursor waits until the field is clicked
       if (!o){ var nq = document.getElementById('nav-q'); if (nq && nq.value){ nq.value = ''; nq.dispatchEvent(new Event('input')); } }
     }
     if (fixed){ btn.remove(); nav.classList.add('menu-fixed'); setOpen(true); }

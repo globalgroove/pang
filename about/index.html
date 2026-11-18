@@ -8,8 +8,8 @@
      ABOUT PAGE  (about/index.html)
      CONTENT BLOCK  -  THIS IS THE ONLY PART YOU NEED TO EDIT HERE
      =====================================================================
-     Left: the dark panel with an optional square image, short text and info lines.
-     Right: one table per section (Services, CV ...). Add, remove or reorder
+     Left: the dark panel with an optional square image, the hovered contact, short text and info lines.
+     Right: the contact list (from "contact" in assets/site.js), then one table per section (Services, CV ...). Add, remove or reorder
      sections freely; each row is a list of cells, one per column.
 
      Rules:
@@ -28,8 +28,18 @@ const PAGE = {
   sideTab: "ABOUT",              // text in the black box on the right edge. "" hides it
   heading: "About",              // hidden heading, for screen readers
 
-  image: "",                     // optional square image in the panel, relative to the site root,
+  /* ---- CONTACT (in the panel, under the image) ----------------------- */
+  /* The lines come from "contact" in assets/site.js, each with Copy / Write */
+  /* (email) or Open (other channels).                                       */
+  copyLabel: "Copy",             // email only: copies the address
+  copiedLabel: "Copied",
+  writeLabel: "Write",           // email only: opens the visitor's mail app
+  openLabel: "Open",             // other channels: opens the page in a new tab
+
+  image: "",                     // optional image in the panel, relative to the site root,
                                  // e.g. "id/about.jpg". "" = dotted placeholder. Set showImage: false to drop the frame
+  imageOnPaper: false,            // true = the image sits whole on the page colour, with a thin outline
+                                 // (for drawings with a transparent background); false = it fills the frame
   showImage: true,
 
   /* ---- PANEL TEXT: list of paragraphs, [] hides it ------------------ */
@@ -44,6 +54,7 @@ const PAGE = {
   /* ---- SECTIONS (right column) --------------------------------------- */
   /*   heading : small title above the table                             */
   /*   columns : column headings, left to right                          */
+  /*   showColumns : false hides the column headings of that table       */
   /*   rows    : one [ ... ] per line, same number of cells as columns   */
   /*   a cell can be "text" or [ "first line", "second line" ]: the second */
   /*   line is set smaller underneath (month, author, city, details)      */
@@ -51,15 +62,16 @@ const PAGE = {
     {
       heading: "Services",
       columns: ["Service", "Scope"],
+      showColumns: false,          // false = no column headings above this table
       rows: [
-        ["Recording", ""],
-        ["Mixing", ""],
-        ["Music production", ""],
-        ["Composition", ""],
-        ["Sound design", ""],
-        ["Sound devices for stage", ""],
-        ["Exhibition sound integration", ""],
-        ["Dramaturgy and consulting", ""]
+        ["Sound design and composition", "Original music and sound for stage, exhibitions and screen"],
+        ["Spatial audio", "Multichannel design, programming and implementation in the venue"],
+        ["Live sound performance", "Sound performed live within a piece, on tour"],
+        ["Recording, mixing and mastering", "Studio and on location, from session to release"],
+        ["Music production", "With artists and bands, from rehearsal room to record"],
+        ["Sound systems and devices", "Custom speakers, instruments and stage devices, designed and built"],
+        ["Exhibition AV integration", "Planning, installation and tuning of audio and video systems"],
+        ["Sound dramaturgy and consulting", "For artists, curators and architects"]
       ]
     },
     {
@@ -67,8 +79,8 @@ const PAGE = {
       columns: ["Year", "Work", "Venue", "Role"],
       rows: [
         [["2026", "Oct"], ["AGORA BAIXOU O SOL", "Luísa Saraiva"], ["TEATRO DO BAIRRO ALTO", "Lisboa (PT)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
-        [["2026", "May"], ["AGORA BAIXOU O SOL", "Luísa Saraiva"], ["RADIAL SYSTEM", "Berlin (DE)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
-        [["2026", "Apr"], ["AGORA BAIXOU O SOL", "Luísa Saraiva"], ["FESTIVAL DDD", "Porto (PT)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        [["2026", "May"], ["AGORA BAIXOU O SOL", "Luísa Saraiva"], ["RADIAL SYSTEM", "Berlin (DE), premiere"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        [["2026", "Apr"], ["AGORA BAIXOU O SOL", "Luísa Saraiva"], ["FESTIVAL DDD", "Porto (PT), pre-premiere"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
         [["2025", "Nov"], ["BOCARRA", "Luísa Saraiva"], ["ALKANTARA FESTIVAL", "CCB, Lisboa (PT)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
         ["2024", ["BOCARRA", "Luísa Saraiva"], ["PACT ZOLLVEREIN", "Essen (DE)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
         ["2024", ["BOCARRA", "Luísa Saraiva"], ["LA MANUFACTURE CDCN", "Bordeaux (FR)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
@@ -89,10 +101,10 @@ const PAGE = {
       columns: ["Year", "Work", "Venue", "Role"],
       rows: [
         [["2026", "Apr–May"], ["REDSKYFALLS", "Alexandre Estrela"], ["VENICE BIENNALE", "61st International Art Exhibition, Venice (IT)"], ["AV INSTALLATION", "Multichannel audio and video implementation"]],
-        [["2023", "Dec"], ["WORK", "Co-creation, Diogo Tudela ++"], ["FUNDAÇÃO DE SERRALVES", "Porto (PT)"], ["SOUND COMMISSION", "Sound piece. Created by Diogo Tudela with Dinis Duarte, Juan Toboso, Marcelo Reis, Maria Coutinho, Ricardo Jacinto"]],
+        [["2023", "Dec"], ["WORK", "Co-creation, Diogo Tudela ++"], ["FUNDAÇÃO DE SERRALVES", "Porto (PT)"], ["CO-AUTHOR", "Sound piece. Created by Diogo Tudela with Dinis Duarte, Juan Toboso, Marcelo Reis, Maria Coutinho, Ricardo Jacinto"]],
         ["2022", ["WATERS’ WITNESS", "Tarek Atoui"], ["FUNDAÇÃO DE SERRALVES", "Porto (PT)"], ["COMMISSION", "Activation of the exhibition, performed live with Mariana Sardon"]],
         ["2022", ["W&T SOUNDSYSTEM", "Co-creation with Sérgio Coutinho"], ["FESTIVAL WALK&TALK", "São Miguel, Azores (PT)"], ["COMMISSION / ENGINEERING", "Custom sound system: design, build and implementation"]],
-        ["2020", ["UNTITLED", "Berru"], ["ARTWORKS — NO ENTULHO", "Residency, Porto (PT)"], ["SOUND COMMISSION", "Dramaturgy, sound consultancy, electroacoustic instrument design and live performance"]]
+        ["2020", ["UNTITLED", "Berru"], ["ARTWORKS — NO ENTULHO", "Residency, Porto (PT)"], ["CO-AUTHOR", "Dramaturgy, sound consultancy, electroacoustic instrument design and live performance"]]
       ]
     },
     {
@@ -112,6 +124,8 @@ const PAGE = {
 <!-- ===================== END OF CONTENT BLOCK ===================== -->
 
 <title>About — pang</title>
+<link rel="icon" type="image/png" href="../id/favicon.png">
+<link rel="apple-touch-icon" href="../id/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -122,15 +136,30 @@ const PAGE = {
 /* about page only: square frame, narrower panel, wider list. Type comes from assets/list.css */
 :root{--frame-ratio:1/1}
 .cols{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
-/* the tables here are for reading: no pointer, no highlighted rows */
+/* the section tables are for reading: no pointer, no highlighted rows */
 tbody tr{cursor:default}
-tbody tr:hover,tbody tr:focus-within{background:none;color:inherit}
-tbody tr:hover td,tbody tr:focus-within td{border-bottom-color:var(--row-line)}
+table.read tbody tr:hover,table.read tbody tr:focus-within{background:none;color:inherit}
+table.read tbody tr:hover td,table.read tbody tr:focus-within td{border-bottom-color:var(--row-line)}
+/* contact list: channel | address, as on the old Contact page */
+#c-specs dd{user-select:all;-webkit-user-select:all;word-break:break-all}   /* one click selects the whole address */
+#c-specs dd.act,#c-specs dd.c-note{user-select:auto;-webkit-user-select:auto}
+.preview .frame.paper{aspect-ratio:3/2;background:var(--paper);box-shadow:inset 0 0 0 1px var(--accent)}   /* wider frame for the drawing */
+.preview .frame.paper img{object-fit:contain;padding:9% 7%;background:transparent}
+.acts{display:flex;gap:16px;margin:0 0 4px}
+.acts button.ql{background:none;border:0;padding:0;color:inherit;cursor:pointer}
+.c-note{font:400 var(--list-size)/1.5 var(--list-sans);opacity:.75}
 table + table{margin-top:36px}
+/* wide screens: Services and the CV scroll in their own block beside the panel, the page stays still */
+@media (min-width:761px){
+  #sections{max-height:calc(100vh - 110px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:var(--rule) transparent}
+  #sections::-webkit-scrollbar{width:6px}
+  #sections::-webkit-scrollbar-thumb{background:var(--rule)}
+}
 /* section title above each table, in the face of the Discography and Work headings */
 caption.sec{caption-side:top;text-align:left;padding:0 8px 10px;font:500 calc(var(--list-size) + 1px)/1.3 var(--list-sans);letter-spacing:.16em;text-transform:uppercase}
 thead th{opacity:.55}
 td.t{width:16em}
+table.read:not(.cv) td.t{width:19em;white-space:nowrap}   /* Services: names on one line, the second column lined up */
 /* CV tables: four columns, a smaller second line under each value */
 td .l2{display:block;margin-top:2px;font:400 calc(var(--list-size) - 1px)/1.4 var(--list-sans);letter-spacing:0;opacity:.7}
 td.yr .l2{font-family:var(--list-mono)}
@@ -143,6 +172,7 @@ td .l2.venue{display:none}
   .cols{grid-template-columns:minmax(0,1fr)}
   .preview{display:block;position:static;margin-bottom:28px;max-width:420px}
   td.t{width:auto}
+  table.read:not(.cv) td.t{width:auto;white-space:normal}
   table.cv td.t,table.cv td:nth-child(3){width:auto}
   table.cv td:nth-child(3){display:none}            /* phones: venue moves under the title */
   table.cv thead th:nth-child(3){display:none}
@@ -161,6 +191,7 @@ td .l2.venue{display:none}
     <aside class="preview" id="preview">
       <div class="frame" id="frame"><img id="p-img" alt=""></div>
       <div class="body">
+        <dl class="p-specs" id="c-specs"></dl>
         <div id="p-text"></div>
         <dl class="p-specs" id="p-specs"></dl>
       </div>
@@ -188,19 +219,50 @@ td .l2.venue{display:none}
     // panel image: shown only once loaded (a missing file keeps the dotted frame)
     var img = $('p-img'); img.hidden = true;
     if (C.showImage === false) $('frame').remove();
-    else if (C.image) { var probe = new Image(); probe.onload = function(){ img.src = probe.src; img.hidden = false; }; probe.src = root + C.image; }
+    else if (C.image) {
+      if (C.imageOnPaper) $('frame').classList.add('paper'); var probe = new Image(); probe.onload = function(){ img.src = probe.src; img.hidden = false; }; probe.src = root + C.image;
+    }
 
     (C.text || []).forEach(function(t){ var p = el('p', 'p-text'); p.innerHTML = t; $('p-text').appendChild(p); });
     var info = (C.info || []).filter(function(r){ return r[1]; });
     info.forEach(function(r){ $('p-specs').appendChild(el('dt', null, r[0])); $('p-specs').appendChild(el('dd', null, r[1])); });
     $('p-specs').hidden = !info.length;
-    if (!(C.text || []).length && !info.length && C.showImage === false) $('preview').hidden = true;
+    if (!(C.text || []).length && !info.length && !((typeof SITE !== 'undefined' && SITE.contact) || []).length && C.showImage === false) $('preview').hidden = true;
+
+    // ---- contact: from "contact" in assets/site.js; hover a line and the panel shows it ----
+    var S = (typeof SITE !== 'undefined') ? SITE : {}, contacts = S.contact || [];
+    function isMail(c){ return /^email$/i.test(c.channel) || /@/.test(c.link) && !/^https?:/.test(c.link); }
+    function href(c){ return !c.link ? '' : isMail(c) ? 'mailto:' + c.link.replace(/^mailto:/, '') : c.link; }
+    // copy: clipboard where the browser allows it, otherwise the address is selected for the visitor to copy
+    function copy(text, btn, dd){
+      var done = function(){ btn.textContent = C.copiedLabel; setTimeout(function(){ btn.textContent = C.copyLabel; }, 1600); };
+      var select = function(){ var r = document.createRange(); r.selectNodeContents(dd); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(text).then(done, select); } catch (e) { select(); }
+    }
+    // every contact line in the panel, each with its own Copy / Write or Open
+    var box = $('c-specs'); box.textContent = '';
+    contacts.forEach(function(c){
+      box.appendChild(el('dt', null, c.channel));
+      var dd = el('dd', null, c.value), h = href(c), acts = el('span', 'acts');
+      box.appendChild(dd);
+      if (h && isMail(c)) {
+        var b = el('button', 'ql', C.copyLabel); b.type = 'button';
+        b.addEventListener('click', function(){ copy(c.link.replace(/^mailto:/, ''), b, dd); });
+        acts.appendChild(b);
+        var w = el('a', 'ql', C.writeLabel + ' ↗'); w.href = h; acts.appendChild(w);
+      } else if (h) {
+        var o = el('a', 'ql', C.openLabel + ' ↗'); o.href = h; o.target = '_blank'; o.rel = 'noopener'; acts.appendChild(o);
+      }
+      if (acts.children.length) { box.appendChild(el('dt')); var ad = el('dd', 'act'); ad.appendChild(acts); box.appendChild(ad); }
+      if (c.note) { box.appendChild(el('dt')); box.appendChild(el('dd', 'c-note', c.note)); }
+    });
+    box.hidden = !contacts.length;
 
     (C.sections || []).forEach(function(sec){
-      var cols = sec.columns || [], cv = cols.length > 3, t = el('table', cv ? 'cv' : null), head = el('thead'), hr = el('tr'), body = el('tbody');
+      var cols = sec.columns || [], cv = cols.length > 3, t = el('table', cv ? 'read cv' : 'read'), head = el('thead'), hr = el('tr'), body = el('tbody');
       if (sec.heading) t.appendChild(el('caption', 'sec', sec.heading));
       cols.forEach(function(c){ var th = el('th', null, c); th.scope = 'col'; hr.appendChild(th); });
-      head.appendChild(hr); t.appendChild(head);
+      head.appendChild(hr); if (sec.showColumns !== false) t.appendChild(head);
       (sec.rows || []).forEach(function(r){
         var tr = el('tr');
         cols.forEach(function(c, i){

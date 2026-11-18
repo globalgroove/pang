@@ -39,36 +39,37 @@ const PAGE = {
     main:  "",                    // above the materials and texts
     audio: "",                    // above the track list
     credits: "Credits",           // small label above the credits
+    presentations: "Presentations", // small label above the presentations
     materials: "",                // small label above the materials text
     sheet: ""                     // above the small images
   },
 
-  /* ---- INFO (top right, on the title line):  [ "label", "value" ] ---- */
-  info: [
-    ["Year", "2026"],
-    ["Role", "Sound direction"]
-  ],
+  /* ---- TITLE LINE: year next to the title, short role on the right ---- */
+  year: "2026",
+  role: "Sound direction",
 
-  /* ---- MAIN TABLE:  [ "label", "unit", "value" ] --------------------- */
-  /* leave the unit as "" when there is none; delete the rows a page does not need */
-  mainData: [
-    ["Premiere", "", "Festival DDD, Porto (PT), April 2026"],
-    ["Presented", "", "Radial System, Berlin (DE), May 2026"],
-    ["Presented", "", "Teatro do Bairro Alto, Lisboa (PT), October 2026"],
-    ["Duration", "min", "60"]
-  ],
-  mainValuesLeft: true,         // false = values centred (good for numbers); true = left aligned
+  mainData: [],                 // the label / unit / value table: not used on pang
 
   /* ---- CREDITS (left column, top):  [ "label", "value" ] --------------- */
-  /* who made it, who curated, commissioned, produced, where it was shown. [] hides it */
+  /* who made it, who curated, commissioned, produced. [] hides it.
+     A long value can go on two lines: [ "label", [ "line one", "line two" ] ] */
   credits: [
     ["Choreography and performance", "Luísa Saraiva"],
     ["Lighting design", "Letícia Scrkycky"],
     ["Instrument", "Inês Tartaruga Água"],
     ["Costume design", "Isabelle Lange"],
     ["Dramaturgical support", "Bibi Dória"],
-    ["Production", "Bactéria Associação Cultural, parasites projects"],
-    ["Co-production", "DDD – Festival Dias da Dança, PACT Zollverein"]
+    ["Production", ["Bactéria Associação Cultural", "parasites projects"]],
+    ["Co-production", ["DDD – Festival Dias da Dança", "PACT Zollverein"]],
+    ["Duration", "60 min"]
+  ],
+
+  /* ---- PRESENTATIONS (under the credits):  [ "date", "place" ] ------- */
+  /* premiere first, then the other dates in order. [] hides it */
+  presentations: [
+    ["May 2026", "Radial System, Berlin (DE), premiere"],
+    ["Apr 2026", "Festival DDD, Porto (PT), pre-premiere"],
+    ["Oct 2026", "Teatro do Bairro Alto, Lisboa (PT)"]
   ],
 
   /* ---- MATERIALS: small technical lines, under the credits ------------- */
@@ -109,6 +110,8 @@ const PAGE = {
 <!-- ===================== END OF CONTENT BLOCK ===================== -->
 
 <title>Agora baixou o sol — pang</title>
+<link rel="icon" type="image/png" href="../../id/favicon.png">
+<link rel="apple-touch-icon" href="../../id/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">

@@ -8,6 +8,7 @@
 .head h1{margin:0;font:400 11px var(--nav-mono);letter-spacing:.06em;text-transform:uppercase;opacity:.75}
 .head p{margin:0;font:400 11px var(--nav-mono);opacity:.75}
 .head p:empty{display:none}
+.head h1 .yr{margin-left:1.6em}            /* the year next to the title */
 h2{font-size:12px;font-weight:700;margin:14px 0 4px;letter-spacing:.08em}
 h2::before{content:"\25CF";margin-right:6px}
 
@@ -26,12 +27,12 @@ td.left{text-align:left}
 /* credits: label / value lines, labels in the condensed face, values in mono */
 .tech .credits{display:grid;grid-template-columns:max-content 1fr;gap:2px 16px;margin:0 0 10px}
 .tech .credits dt{font:400 11px/1.55 var(--label);letter-spacing:.06em;opacity:.75}
-.tech .credits dd{margin:0}
+.tech .credits dd{margin:0;white-space:nowrap}
+.tech .credits.dates dt{font-family:var(--value);letter-spacing:0}
+@media (max-width:760px){.tech .credits dd{white-space:normal}}   /* phones: too narrow to keep every line whole */
 td.std{width:38%}
 tbody tr{transition:background .12s,color .12s}
-tbody tr:hover{background:var(--accent);color:var(--paper)}
-tbody tr:hover td.u{color:var(--paper)}
-tbody tr:hover th,tbody tr:hover td{border-color:var(--paper)}
+tbody tr:hover{background:var(--hover)}
 
 /* meta */
 .meta{display:grid;grid-template-columns:auto 1fr;gap:4px 28px;margin:0 0 18px;font-size:14px}

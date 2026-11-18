@@ -7,7 +7,7 @@
   --list-sans:"Geist","Helvetica Neue",Arial,sans-serif;
   --list-mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
   --row-line:#c3c4c1;                    /* faint line between rows, on the silver */
-  --panel:var(--accent);                 /* the cover panel is dark: accent ground, silver text */
+  --panel:var(--ink);                    /* the cover panel is dark: ink ground, silver text */
   --panel-text:var(--paper);
   --panel-rule:#3b3c3b;
 }
@@ -31,8 +31,7 @@ tbody tr{position:relative;cursor:pointer;transition:background .12s,color .12s}
 tbody tr.soon{cursor:default}
 tbody tr.soon td{opacity:.75}
 tbody tr.soon:hover td,tbody tr.soon.on td{opacity:1}
-tbody tr:hover,tbody tr:focus-within,tbody tr.on{background:var(--accent);color:var(--paper)}
-tbody tr:hover td,tbody tr:focus-within td,tbody tr.on td{border-bottom-color:var(--accent)}
+tbody tr:hover,tbody tr:focus-within,tbody tr.on{background:var(--hover)}   /* quiet hover: light silver */
 tbody tr:focus-within a{outline:none}
 tbody tr:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 /* the last hovered row is not kept highlighted once the pointer leaves the list */
@@ -82,7 +81,6 @@ tr.drawer,tr.drawer:hover{background:none!important;color:inherit!important;curs
 tr.drawer > td{padding:0 0 14px;border-bottom:1px solid var(--row-line)}
 tr.drawer .preview{display:block!important;position:static;max-width:420px}
 @media (max-width:760px){
-  tbody tr.open{background:var(--accent);color:var(--paper)}
-  tbody tr.open td{border-bottom-color:var(--accent)}
+  tbody tr.open{background:var(--hover)}
 }
 @media (prefers-reduced-motion:reduce){tbody tr{transition:none}}
