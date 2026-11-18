@@ -16,7 +16,8 @@
        - Keep the quotation marks "like this" and the commas at line ends.
        - A quotation mark inside a value needs a backslash: "12\" LP"
        - Paragraphs may contain simple HTML, e.g. <em>italic</em>.
-       - A column named "Year" is set in the mono face, like the other lists.
+       - A column named "Year" is set in the mono face, like the other lists;
+         the column after it is the title column (medium weight).
      ===================================================================== -->
 <script>
 const PAGE = {
@@ -44,6 +45,8 @@ const PAGE = {
   /*   heading : small title above the table                             */
   /*   columns : column headings, left to right                          */
   /*   rows    : one [ ... ] per line, same number of cells as columns   */
+  /*   a cell can be "text" or [ "first line", "second line" ]: the second */
+  /*   line is set smaller underneath (month, author, city, details)      */
   sections: [
     {
       heading: "Services",
@@ -60,10 +63,47 @@ const PAGE = {
       ]
     },
     {
-      heading: "CV",
-      columns: ["Year", "Activity", "Context"],
+      heading: "Stage and dance",
+      columns: ["Year", "Work", "Venue", "Role"],
       rows: [
-        ["2026", "", ""]
+        [["2026", "Oct"], ["AGORA BAIXOU O SOL", "Luísa Saraiva"], ["TEATRO DO BAIRRO ALTO", "Lisboa (PT)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        [["2026", "May"], ["AGORA BAIXOU O SOL", "Luísa Saraiva"], ["RADIAL SYSTEM", "Berlin (DE)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        [["2026", "Apr"], ["AGORA BAIXOU O SOL", "Luísa Saraiva"], ["FESTIVAL DDD", "Porto (PT)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        [["2025", "Nov"], ["BOCARRA", "Luísa Saraiva"], ["ALKANTARA FESTIVAL", "CCB, Lisboa (PT)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        ["2024", ["BOCARRA", "Luísa Saraiva"], ["PACT ZOLLVEREIN", "Essen (DE)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        ["2024", ["BOCARRA", "Luísa Saraiva"], ["LA MANUFACTURE CDCN", "Bordeaux (FR)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        [["2024", "Jul"], ["BOCARRA", "Luísa Saraiva"], ["TEATRO ROSALÍA DE CASTRO", "A Coruña (ES)"], ["RESEARCH", "Residency"]],
+        [["2024", "Apr"], ["BOCARRA", "Luísa Saraiva"], ["FESTIVAL DDD", "Porto (PT)"], ["SOUND DIRECTION", "Sound composition, sound design, spatial-audio implementation and live performance"]],
+        ["2022", ["TIRANA", "Luísa Saraiva"], ["MUSEU COMO PERFORMANCE", "Fundação de Serralves, Porto (PT)"], ["SOUND DRAMATURGY", "Consultant"]],
+        ["2022", ["LAGO LIBIDINAL", "Jonathan Saldanha"], ["CCB", "Lisboa (PT)"], ["SOUND DESIGN & SOFTWARE DEVELOPMENT", "Dramaturgy, software development"]],
+        ["2022", ["LAGO LIBIDINAL", "Jonathan Saldanha"], ["RIVOLI, TMP", "Porto (PT)"], ["SOUND DESIGN & SOFTWARE DEVELOPMENT", "Dramaturgy, software development"]],
+        [["2021–22", "Aug–May"], ["LAGO LIBIDINAL / SCALE TRAVELS", "Jonathan Saldanha"], ["INDEX FESTIVAL", "Scale Travels collaboration programme, INL & gnration, Braga (PT)"], ["SOUND DESIGN & SOFTWARE DEVELOPMENT", "Software development, 3D modelling and video creation"]],
+        ["2021–22", ["LAGO LIBIDINAL", "Jonathan Saldanha"], ["SOOPA", "Porto (PT)"], ["RESEARCH", "Dramaturgy, software development"]],
+        ["2021", ["LITHIUM FAUST", "Jonathan Saldanha"], ["TMP", "Porto (PT)"], ["SOUND DESIGN", "Multichannel sound design for a stage piece"]],
+        ["2021", ["UBER ALLES", "Carlos Mesquita"], ["BOCA BIENNIAL", "MAAT, Lisboa (PT)"], ["SOUND DESIGN", "Sound composition, live performance"]],
+        ["2020", ["MERCÚRIO VERMELHO", "Jonathan Saldanha"], ["TMP", "Porto (PT)"], ["SOUND DESIGN", "Script transcription, artificial voice-over modelling, mixing on location"]]
+      ]
+    },
+    {
+      heading: "Exhibitions and commissions",
+      columns: ["Year", "Work", "Venue", "Role"],
+      rows: [
+        [["2026", "Apr–May"], ["RED SKY FALLS", "Alexandre Estrela"], ["VENICE BIENNALE", "61st International Art Exhibition, Venice (IT)"], ["AV INSTALLATION", "Multichannel audio and video implementation"]],
+        [["2023", "Dec"], ["WORK", "Co-creation, Diogo Tudela ++"], ["FUNDAÇÃO DE SERRALVES", "Porto (PT)"], ["SOUND COMMISSION", "Sound piece. Created by Diogo Tudela with Dinis Duarte, Juan Toboso, Marcelo Reis, Maria Coutinho, Ricardo Jacinto"]],
+        ["2022", ["WATERS’ WITNESS", "Tarek Atoui"], ["FUNDAÇÃO DE SERRALVES", "Porto (PT)"], ["COMMISSION", "Activation of the exhibition, performed live with Mariana Sardon"]],
+        ["2022", ["W&T SOUNDSYSTEM", "Co-creation with Sérgio Coutinho"], ["FESTIVAL WALK&TALK", "São Miguel, Azores (PT)"], ["COMMISSION / ENGINEERING", "Custom sound system: design, build and implementation"]],
+        ["2020", ["UNTITLED", "Berru"], ["ARTWORKS — NO ENTULHO", "Residency, Porto (PT)"], ["SOUND COMMISSION", "Dramaturgy, sound consultancy, electroacoustic instrument design and live performance"]]
+      ]
+    },
+    {
+      heading: "Own work and co-creation",
+      columns: ["Year", "Work", "Venue", "Role"],
+      rows: [
+        [["2023", "Feb"], ["PERMAFROST", "Creation, with Diogo Oliveira"], ["ESCOLA DAS ARTES, UCP", "Porto (PT)"], ["LIVE AV", "AV installation, live show"]],
+        ["2022", ["C-PENTANE", "Creation"], ["BERLINER FESTSPIELE, MAERZMUSIK", "Silent Green, Berlin (DE)"], ["COMMISSION", "Sound piece, live presentation"]],
+        [["2022", "Oct"], ["ADAMASTORA", "Creation, with Mauro Ventura"], ["FABBRICA DEL VAPORE", "Milan (IT)"], ["SOUND COMPOSITION", "Programmed by Hyper Objects. AV installation, live performance"]],
+        [["2022", "Aug"], ["PERMAFROST", "Creation, with Diogo Oliveira"], ["PAF", "Saint-Erme (FR)"], ["SHOW, LECTURE", "PAF Summer School programme. AV installation, live performance"]],
+        ["2019", ["MÁXIMA INTRÍNSECA", "Co-creation with Mariana Vilanova"], ["PLANETÁRIO DO PORTO", "Porto (PT)"], ["LIVE AV", "Live show"]]
       ]
     }
   ]
@@ -91,10 +131,22 @@ table + table{margin-top:36px}
 caption.sec{caption-side:top;text-align:left;padding:0 8px 10px;font:500 calc(var(--list-size) + 1px)/1.3 var(--list-sans);letter-spacing:.16em;text-transform:uppercase}
 thead th{opacity:.55}
 td.t{width:16em}
-/* phones: the panel stays, above the tables */
+/* CV tables: four columns, a smaller second line under each value */
+td .l2{display:block;margin-top:2px;font:400 calc(var(--list-size) - 1px)/1.4 var(--list-sans);letter-spacing:0;opacity:.7}
+td.yr .l2{font-family:var(--list-mono)}
+table.cv td.t{width:26%}
+table.cv td:nth-child(3){width:28%}
+table.cv td.yr{width:5.5em}
+td .l2.venue{display:none}
+/* phones: one column; the panel stays, above the tables */
 @media (max-width:760px){
+  .cols{grid-template-columns:minmax(0,1fr)}
   .preview{display:block;position:static;margin-bottom:28px;max-width:420px}
   td.t{width:auto}
+  table.cv td.t,table.cv td:nth-child(3){width:auto}
+  table.cv td:nth-child(3){display:none}            /* phones: venue moves under the title */
+  table.cv thead th:nth-child(3){display:none}
+  td .l2.venue{display:block}
 }
 </style>
 </head>
@@ -145,7 +197,7 @@ td.t{width:16em}
     if (!(C.text || []).length && !info.length && C.showImage === false) $('preview').hidden = true;
 
     (C.sections || []).forEach(function(sec){
-      var cols = sec.columns || [], t = el('table'), head = el('thead'), hr = el('tr'), body = el('tbody');
+      var cols = sec.columns || [], cv = cols.length > 3, t = el('table', cv ? 'cv' : null), head = el('thead'), hr = el('tr'), body = el('tbody');
       if (sec.heading) t.appendChild(el('caption', 'sec', sec.heading));
       cols.forEach(function(c){ var th = el('th', null, c); th.scope = 'col'; hr.appendChild(th); });
       head.appendChild(hr); t.appendChild(head);
@@ -153,8 +205,13 @@ td.t{width:16em}
         var tr = el('tr');
         cols.forEach(function(c, i){
           var cls = /^year$/i.test(c) ? 'yr' : (i === 0 ? 't' : (i === 1 && /^year$/i.test(cols[0]) ? 't' : null));
-          tr.appendChild(el('td', cls, r[i] || ''));
+          var v = r[i], td = el('td', cls);
+          if (Array.isArray(v)) { td.appendChild(document.createTextNode(v[0] || '')); if (v[1]) td.appendChild(el('span', 'l2', v[1])); }
+          else td.textContent = v || '';
+          tr.appendChild(td);
         });
+        // phones: the venue column is hidden, so its name and place are repeated under the title
+        if (cv && r[2] && tr.children[1]) { var vv = Array.isArray(r[2]) ? r[2].filter(Boolean).join(', ') : r[2]; tr.children[1].appendChild(el('span', 'l2 venue', vv)); }
         body.appendChild(tr);
       });
       t.appendChild(body);
