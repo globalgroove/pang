@@ -40,7 +40,7 @@ const SITE = {
   /* Feeds the first table on the Work page and the search in the menu.    */
   /* The table lists them in this order (first here = top row).            */
   /*   title, year, type, role : shown in the table                        */
-  /*   client  : optional, shown in the preview                            */
+  /*   client  : optional, shown in the preview (author, artist or client) */
   /*   link    : the project page, relative to the site root               */
   /*             (copy work/_template/ to make a new page)                 */
   /*   image   : preview image on the Work page, relative to the site root */
@@ -49,11 +49,67 @@ const SITE = {
   /* A project without a page yet: leave link "" (listed, not clickable).  */
   projects: [
     {
-      title: "Project title", year: "2026", type: "Sound design", role: "", client: "",
+      title: "Agora baixou o sol", year: "2026", type: "Dance", role: "Sound direction", client: "Luísa Saraiva",
+      link: "work/agora-baixou-o-sol/index.html",
+      image: "work/agora-baixou-o-sol/imgs/cover.jpg",
+      text: "",
+      keywords: "agora solo ddd radial tba"
+    },
+    {
+      title: "RedSkyFalls", year: "2026", type: "Installation", role: "Audio and video implementation", client: "Alexandre Estrela",
+      link: "work/redskyfalls/index.html",
+      image: "work/redskyfalls/imgs/cover.jpg",
+      text: "",
+      keywords: "red sky falls venice biennale portugal pavilion"
+    },
+    {
+      title: "Bocarra", year: "2024", type: "Dance", role: "Sound direction", client: "Luísa Saraiva",
       link: "",
       image: "",
       text: "",
-      keywords: ""
+      keywords: "pact alkantara ddd"
+    },
+    {
+      title: "Tirana", year: "2022", type: "Performance", role: "Sound dramaturgy", client: "Luísa Saraiva",
+      link: "",
+      image: "",
+      text: "",
+      keywords: "serralves museu como performance"
+    },
+    {
+      title: "Lago Libidinal", year: "2022", type: "Stage", role: "Sound design, software", client: "Jonathan Saldanha",
+      link: "",
+      image: "",
+      text: "",
+      keywords: "scale travels index ccb rivoli"
+    },
+    {
+      title: "Lithium Faust", year: "2021", type: "Stage", role: "Sound design", client: "Jonathan Saldanha",
+      link: "",
+      image: "",
+      text: "",
+      keywords: "tmp"
+    },
+    {
+      title: "Mercúrio Vermelho", year: "2020", type: "Stage", role: "Sound design", client: "Jonathan Saldanha",
+      link: "",
+      image: "",
+      text: "",
+      keywords: "tmp voice"
+    },
+    {
+      title: "Work", year: "2023", type: "Sound piece", role: "Sound commission", client: "Diogo Tudela ++",
+      link: "",
+      image: "",
+      text: "",
+      keywords: "serralves"
+    },
+    {
+      title: "Untitled", year: "2020", type: "Residency", role: "Sound commission", client: "Berru",
+      link: "",
+      image: "",
+      text: "",
+      keywords: "artworks no entulho"
     }
   ],
 

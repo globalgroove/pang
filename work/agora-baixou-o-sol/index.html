@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- =====================================================================
+     PROJECT PAGE  (work/agora-baixou-o-sol/index.html)
+     CONTENT BLOCK  -  THIS IS THE ONLY PART YOU NEED TO EDIT
+     =====================================================================
+     To make a new project: copy work/_template/ (not this folder) to work/new-name/,
+     change the values below, then add one block to "projects" (or "commercial")
+     in assets/site.js.
+     The menu and logo come from assets/site.js; the look from assets/*.css.
+
+     Rules:
+       - Keep the quotation marks "like this" and the commas at line ends.
+       - Paragraphs may contain simple HTML, e.g. <em>italic</em>.
+       - Leave a list empty ( [] ) to hide that part of the page.
+       - Image and audio paths are relative to this folder, e.g. "imgs/photo.jpg".
+         File names must match exactly, capitals included (.JPG is not .jpg online).
+         If an image is missing, a dotted placeholder is shown instead.
+     ===================================================================== -->
+<script>
+const PAGE = {
+
+  root: "../../",               // path back to the site root (project pages are two folders down)
+
+  back: "work/index.html",      // where the × (top right) and the Esc key lead, relative to the site root
+
+  /* ---- PAGE IDENTITY ------------------------------------------------ */
+  number: 0,                    // automatic: the side index number comes from the order of
+  nextPage: "",                 // "projects" (then "commercial") in assets/site.js; the next box leads to the next one
+  browserTitle: "Agora baixou o sol — pang",   // text on the browser tab
+  title: "agora baixou o sol",       // title, top left (shown in capitals)
+
+  /* ---- SECTION HEADINGS: "" = none (the small headings with the dot) ---- */
+  headings: {
+    main:  "",                    // above the materials and texts
+    audio: "",                    // above the track list
+    credits: "Credits",           // small label above the credits
+    materials: "",                // small label above the materials text
+    sheet: ""                     // above the small images
+  },
+
+  /* ---- INFO (top right, on the title line):  [ "label", "value" ] ---- */
+  info: [
+    ["Year", "2026"],
+    ["Role", "Sound direction"]
+  ],
+
+  /* ---- MAIN TABLE:  [ "label", "unit", "value" ] --------------------- */
+  /* leave the unit as "" when there is none; delete the rows a page does not need */
+  mainData: [
+    ["Premiere", "", "Festival DDD, Porto (PT), April 2026"],
+    ["Presented", "", "Radial System, Berlin (DE), May 2026"],
+    ["Presented", "", "Teatro do Bairro Alto, Lisboa (PT), October 2026"],
+    ["Duration", "min", "60"]
+  ],
+  mainValuesLeft: true,         // false = values centred (good for numbers); true = left aligned
+
+  /* ---- CREDITS (left column, top):  [ "label", "value" ] --------------- */
+  /* who made it, who curated, commissioned, produced, where it was shown. [] hides it */
+  credits: [
+    ["Choreography and performance", "Luísa Saraiva"],
+    ["Lighting design", "Letícia Scrkycky"],
+    ["Instrument", "Inês Tartaruga Água"],
+    ["Costume design", "Isabelle Lange"],
+    ["Dramaturgical support", "Bibi Dória"],
+    ["Production", "Bactéria Associação Cultural, parasites projects"],
+    ["Co-production", "DDD – Festival Dias da Dança, PACT Zollverein"]
+  ],
+
+  /* ---- MATERIALS: small technical lines, under the credits ------------- */
+  /* one line per item; an empty list [] hides it */
+  materials: [],
+
+  /* ---- TEXT BOXES: each is a list of paragraphs. [] hides a box ------ */
+  texts: {
+    one: [        // left column, between the credits and Fig. 2
+      "A solo by Luísa Saraiva. The title comes from a traditional song from the northwest of Portugal, sung at the end of the working day. The piece works with loss, time and ageing, and with dance as a means of belonging, resistance and pleasure."
+    ],
+    two: [        // right column, between the table and the audio list
+      "Sound direction covers the composition, a multichannel soundscape built from original music and field recordings, and its implementation in each venue.",
+      "Copper props on stage act as resonating bodies, driven by the sound system. Three dubplates were composed, mixed and mastered for the piece and enter the stage as objects."
+    ],
+    three: [      // full width, before the small images
+      "The sound is performed live. Material is triggered and moved through the speaker system in response to the performer's movement, so the position and density of the sound follow the choreography as it unfolds."
+    ]
+  },
+
+  /* ---- MAIN IMAGES (3:2 landscape works best) ----------------------- */
+  /* put the files in this folder's imgs/ and write e.g. "imgs/fig1.jpg".
+     "caption" is shown under the image ("" = none); "alt" is a short description for screen readers.
+     Click an image to enlarge it; the viewer steps through these two and the small images below */
+  figure1: { src: "", alt: "", caption: "" },   // right column. Empty src = halftone placeholder
+  figure2: { src: "", alt: "", caption: "" },   // left column
+
+  /* ---- AUDIO TRACKS ------------------------------------------------- */
+  /* e.g. { src: "audio/track-01.mp3", title: "Track 01" }. No tracks = audio list and player bar are hidden */
+  tracks: [],
+
+  /* ---- SMALL IMAGES (square crops work best, click to enlarge) ------ */
+  /* e.g. { src: "imgs/detail-01.jpg", alt: "Describe the image", caption: "" } */
+  sheetGray: false,              // true = grayscale, colour on hover. false = always colour
+  sheet: []
+};
+</script>
+<!-- ===================== END OF CONTENT BLOCK ===================== -->
+
+<title>Agora baixou o sol — pang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- shared files: the "../../" matches root above -->
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/work.css">
+<link rel="stylesheet" href="../../assets/player.css">
+<script src="../../assets/site.js"></script>
+</head>
+<body>
+<!-- PAGE SKELETON. Empty containers, filled by assets/base.js (menu) and assets/work.js (everything else). -->
+<div class="page" id="top">
+
+  <nav class="site" id="site"></nav>
+
+  <!-- close: back to the Work page (top right). Side tabs: this page (+ the next page when nextPage is set) -->
+  <a class="close" id="close"></a>
+  <div class="tabs-side" id="tabs-side"><div class="tab-side" id="tab-side" aria-hidden="true"></div></div>
+
+  <!-- title line: title left, info right (as in C-Pentane) -->
+  <div class="head"><h1 id="title-main"></h1><p id="info"></p></div>
+
+  <!-- two-column grid. Rows: [heading] / [left column | right column] -->
+  <div class="grid">
+    <h2 id="h-main"></h2>
+
+    <!-- left column -->
+    <main>
+      <div class="tech" id="materials"></div>
+      <div class="text" id="text-1"></div>
+      <figure class="fig-wrap" id="fig-2"></figure>
+    </main>
+
+    <!-- right column -->
+    <aside>
+      <figure class="fig-wrap" id="fig-1"></figure>
+      <div class="scroll"><table><tbody id="main-data"></tbody></table></div>
+      <div class="text" id="text-2"></div>
+      <div id="audio-block">
+        <h2 id="h-audio"></h2>
+        <table class="tl">
+          <thead><tr><th>No.</th><th>Track</th><th class="r">Time</th></tr></thead>
+          <tbody id="tracks"></tbody>
+        </table>
+      </div>
+    </aside>
+  </div>
+
+  <!-- full-width text box -->
+  <div class="text" id="text-3"></div>
+
+  <!-- small images (contact sheet) -->
+  <div id="sheet-block">
+    <h2 id="h-sheet"></h2>
+    <div class="sheet" id="sheet"></div>
+  </div>
+
+  <!-- enlarged image viewer -->
+  <dialog class="lightbox" aria-label="Image viewer">
+    <figure><img alt=""><figcaption></figcaption></figure>
+    <div class="lb-bar">
+      <span class="lb-count"></span>
+      <button type="button" class="play" data-lb="prev">Prev</button>
+      <button type="button" class="play" data-lb="next">Next</button>
+      <button type="button" class="play" data-lb="close">Close</button>
+    </div>
+  </dialog>
+
+  <div class="foot"><span id="foot-index"></span><a href="#top">Back to top</a></div>
+</div>
+
+<!-- player, fixed to the bottom (hidden when the page has no tracks) -->
+<div class="player" id="player" role="region" aria-label="Audio player" hidden>
+  <div class="in">
+    <div class="btns">
+      <button type="button" id="p-prev" aria-label="Previous track">&#9664;&#9664;</button>
+      <button type="button" id="p-play" aria-pressed="false" aria-label="Play">Play</button>
+      <button type="button" id="p-next" aria-label="Next track">&#9654;&#9654;</button>
+    </div>
+    <div class="now" id="p-now" aria-live="polite"></div>
+    <div class="time" id="p-time">0:00 / 0:00</div>
+    <div class="track" id="p-track" role="slider" tabindex="0" aria-label="Position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="p-fill"></div></div>
+  </div>
+  <audio id="audio" preload="metadata"></audio>
+</div>
+
+<script src="../../assets/base.js"></script>
+<script src="../../assets/work.js"></script>
+</body>
+</html>

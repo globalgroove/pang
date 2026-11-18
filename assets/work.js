@@ -60,12 +60,22 @@
       $('main-data').appendChild(tr);
     });
 
-    // materials: small technical text under the table; an empty list hides it
-    var mat = $('materials');
-    if (!C.materials || !C.materials.length) { mat.hidden = true; }
+    // credits / materials: small technical text at the top of the left column; empty lists hide it.
+    // credits: [ "label", "value" ] lines (author, curator, commission, production ...);
+    // materials: plain lines. A page can use either or both (credits first)
+    var mat = $('materials'), cr = C.credits || [], ml = C.materials || [];
+    if (!cr.length && !ml.length) { mat.hidden = true; }
     else {
-      if (C.headings.materials) mat.appendChild(el('p', 'tech-label', C.headings.materials));
-      C.materials.forEach(function(t){ var p = el('p'); p.innerHTML = t; mat.appendChild(p); });
+      if (cr.length) {
+        if (C.headings.credits) mat.appendChild(el('p', 'tech-label', C.headings.credits));
+        var dl = el('dl', 'credits');
+        cr.forEach(function(r){ dl.appendChild(el('dt', null, r[0])); var dd = el('dd'); dd.innerHTML = r[1]; dl.appendChild(dd); });
+        mat.appendChild(dl);
+      }
+      if (ml.length) {
+        if (C.headings.materials) mat.appendChild(el('p', 'tech-label', C.headings.materials));
+        ml.forEach(function(t){ var p = el('p'); p.innerHTML = t; mat.appendChild(p); });
+      }
     }
 
     // text boxes (paragraphs may contain simple HTML); an empty list hides the box

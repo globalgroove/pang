@@ -23,6 +23,10 @@ td.left{text-align:left}
 .tech[hidden]{display:none}
 .tech p{margin:0}
 .tech .tech-label{font:500 11px/1.55 var(--label);letter-spacing:.16em;margin-bottom:1px}
+/* credits: label / value lines, labels in the condensed face, values in mono */
+.tech .credits{display:grid;grid-template-columns:max-content 1fr;gap:2px 16px;margin:0 0 10px}
+.tech .credits dt{font:400 11px/1.55 var(--label);letter-spacing:.06em;opacity:.75}
+.tech .credits dd{margin:0}
 td.std{width:38%}
 tbody tr{transition:background .12s,color .12s}
 tbody tr:hover{background:var(--accent);color:var(--paper)}

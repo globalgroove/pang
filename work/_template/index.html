@@ -38,6 +38,7 @@ const PAGE = {
   headings: {
     main:  "",                    // above the materials and texts
     audio: "",                    // above the track list
+    credits: "",                  // small label above the credits
     materials: "",                // small label above the materials text
     sheet: ""                     // above the small images
   },
@@ -54,7 +55,14 @@ const PAGE = {
   mainData: [],                 // e.g. [ ["Channels", "", "8.1"] ]. [] hides the table
   mainValuesLeft: false,        // false = values centred (good for numbers); true = left aligned
 
-  /* ---- MATERIALS: small technical text under the table ---------------- */
+  /* ---- CREDITS (left column, top):  [ "label", "value" ] --------------- */
+  /* who made it, who curated, commissioned, produced, where it was shown. [] hides it */
+  credits: [
+    ["Author",        ""],
+    ["Commissioned by", ""]
+  ],
+
+  /* ---- MATERIALS: small technical lines, under the credits ------------- */
   /* one line per item; an empty list [] hides it */
   materials: [],
 
